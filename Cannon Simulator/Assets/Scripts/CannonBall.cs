@@ -9,7 +9,7 @@ public class CannonBall : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddRelativeForce(Random.Range(-10,10), 0f,CBSpeed,ForceMode.Impulse);
+        rb.AddRelativeForce(0f, 0f,CBSpeed,ForceMode.Impulse);
         Invoke("DestroyBall", 15f);
     }
 

@@ -1,40 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sliders : MonoBehaviour
 {
-    public float cannonBallWeight = 1;
-    public float cannonForce = 100;
+    public float cannonBallWeight;
+    public float cannonForce;
     public GameObject CannonBarrel;
+    public Text rotXText;
+    public Text rotYText;
+    public Text weightText;
+    public Text forceText;
 
     private void Start()
     {
         BarrelRotationX(0f);
         BarrelRotationY(0f);
-        CannonBallWeight(0.2f);
-        CannonForce(0.5f);
+        CannonBallWeight(0f);
+        CannonForce(0f);
     }
 
     public void BarrelRotationX(float rotationX)
     {
-        CannonBarrel.transform.localEulerAngles = new Vector3(CannonBarrel.transform.localEulerAngles.x, rotationX * 70, CannonBarrel.transform.localEulerAngles.z);
+        CannonBarrel.transform.localEulerAngles = new Vector3(CannonBarrel.transform.localEulerAngles.x, rotationX , CannonBarrel.transform.localEulerAngles.z);
+        rotXText.text = rotationX.ToString() + "°";
     }
 
     public void BarrelRotationY(float rotationY)
     {
-        CannonBarrel.transform.localEulerAngles = new Vector3(-rotationY * 35, CannonBarrel.transform.localEulerAngles.y, CannonBarrel.transform.localEulerAngles.z);
+        CannonBarrel.transform.localEulerAngles = new Vector3(-rotationY, CannonBarrel.transform.localEulerAngles.y, CannonBarrel.transform.localEulerAngles.z);
+        rotYText.text = rotationY.ToString() + "°";
     }
 
     public void CannonBallWeight(float weight)
     {
-        cannonBallWeight = weight * 10 + 1;
-        Debug.Log(cannonBallWeight);
+        cannonBallWeight = weight * 0.2f + 8;
+        weightText.text = cannonBallWeight.ToString() + " kg";
     }
 
     public void CannonForce(float force)
     {
-        cannonForce = force * 650 + 100;
-        Debug.Log(cannonForce);
+        cannonForce = force + 100;
+        forceText.text = cannonForce.ToString() + " N";
     }
 }
