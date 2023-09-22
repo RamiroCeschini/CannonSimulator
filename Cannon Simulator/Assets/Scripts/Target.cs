@@ -4,25 +4,18 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    private bool beenHit = false;
+   // private bool beenHit = false;
     public delegate void TargetEvent();
     public static TargetEvent targetEvent;
-    private void OnCollisionEnter(Collision collision)
+    public FixedJoint joint;
+
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("CannonBall") || collision.gameObject.CompareTag("Target"))
-        {
-            TargetHit();
-            Debug.Log("beenhit");
-        }
+        joint = GetComponent<FixedJoint>(); 
     }
 
-    private void TargetHit()
+    private void OnJointBreak()
     {
-        if (!beenHit)
-        {
-            beenHit = true;
-            targetEvent?.Invoke();
-            Debug.Log("evento");
-        }
+        targetEvent?.Invoke();
     }
 }
