@@ -10,10 +10,13 @@ public class Shoot : MonoBehaviour
 
     public void ShootBall()
     {
-        GameObject cannonBall = cannonBallPrefab;
-        cannonBall.GetComponent<Rigidbody>().mass = sliderInfo.cannonBallWeight;
-        cannonBall.GetComponent<CannonBall>().CBSpeed = sliderInfo.cannonForce;
-        Instantiate(cannonBall, spawnPoint.position, spawnPoint.rotation);
-
+        if (sliderInfo.canShoot)
+        {
+            GameObject cannonBall = cannonBallPrefab;
+            cannonBall.GetComponent<Rigidbody>().mass = sliderInfo.cannonBallWeight;
+            cannonBall.GetComponent<CannonBall>().CBSpeed = sliderInfo.cannonForce;
+            Instantiate(cannonBall, spawnPoint.position, spawnPoint.rotation);
+            sliderInfo.canShoot = false;
+        }
     }
 }

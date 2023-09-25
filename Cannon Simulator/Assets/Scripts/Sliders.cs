@@ -7,11 +7,15 @@ public class Sliders : MonoBehaviour
 {
     public float cannonBallWeight;
     public float cannonForce;
+    public float currentX;
+    public float currentY;
     public GameObject CannonBarrel;
     public Text rotXText;
     public Text rotYText;
     public Text weightText;
     public Text forceText;
+
+    public bool canShoot = true;
 
     private void Start()
     {
@@ -25,12 +29,14 @@ public class Sliders : MonoBehaviour
     {
         CannonBarrel.transform.localEulerAngles = new Vector3(CannonBarrel.transform.localEulerAngles.x, rotationX , CannonBarrel.transform.localEulerAngles.z);
         rotXText.text = rotationX.ToString() + "°";
+        currentX = rotationX;
     }
 
     public void BarrelRotationY(float rotationY)
     {
         CannonBarrel.transform.localEulerAngles = new Vector3(-rotationY, CannonBarrel.transform.localEulerAngles.y, CannonBarrel.transform.localEulerAngles.z);
         rotYText.text = rotationY.ToString() + "°";
+        currentY = rotationY;
     }
 
     public void CannonBallWeight(float weight)

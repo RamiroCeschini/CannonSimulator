@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-   // private bool beenHit = false;
+   public bool beenHit = false;
+    public bool isJoint = false;
     public delegate void TargetEvent();
     public static TargetEvent targetEvent;
-    public FixedJoint joint;
 
-    private void Start()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        joint = GetComponent<FixedJoint>(); 
+            if (collision.gameObject.CompareTag("CannonBall") && !beenHit && !isJoint)
+        {
+            targetEvent?.Invoke();
+            beenHit = true;
+        }
     }
 
     private void OnJointBreak()
